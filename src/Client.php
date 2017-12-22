@@ -138,7 +138,7 @@ class Client implements ClientInterface
      */
     public function sendAsync(RequestInterface $request)
     {
-        return $this->httpClient->sendAsync($request)->then(
+         return $this->httpClient->sendAsync($request, ["timeout" => 10])->then(
             function (ResponseInterface $response) use ($request) {
                 return $request->getRpcId() ? $response : null;
             }
